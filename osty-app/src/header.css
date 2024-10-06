@@ -1,0 +1,11 @@
+header {
+    background-color: #a4c991;
+    color: white;
+  }
+
+.header-logo {
+    text-align: left;
+    padding: 20px;
+    margin: 0px;
+    height: 1em;
+}

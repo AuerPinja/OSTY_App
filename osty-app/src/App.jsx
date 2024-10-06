@@ -6,10 +6,10 @@ function App() {
 
   return (
     <>
-      <div>
-        <h1>Olen...</h1>
-        <button>Työnantaja</button>
-        <button>Työnhakija</button>
+      <div className="main-container">
+        <h2>Olen...</h2>
+        <div className="main-button-container"><button>Työnantaja</button></div>
+        <div className="main-button-container"><button>Työnhakija</button></div>
       </div>
     </>
   )
