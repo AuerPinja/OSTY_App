@@ -45,3 +45,52 @@
 .main-container {
   padding-top: 50px;
 }
+
+
+/* Styling for the card container */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  color: black;
+}
+
+/* Individual card styling */
+.card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  width: 200px; /* Adjust width as needed */
+  text-align: left;
+}
+
+/* Card content styling */
+.card-content p {
+  margin: 8px 0;
+}
+
+.card-content p strong {
+  font-weight: bold;
+}
+
+.fake-image {
+  background-color: #d0d0d0;
+  height: 50px;
+}
+
+.array-item {
+  display: inline-block;
+  background-color: #f0f0f0;
+  padding: 4px 8px;
+  margin: 4px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+}
+
+.heart-icon {
+  text-align: right;
+
+}
