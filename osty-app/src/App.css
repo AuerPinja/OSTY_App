@@ -2,34 +2,6 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
 .card {
   padding: 2em;
 }
@@ -43,7 +15,8 @@
 }
 
 .main-container {
-  padding-top: 50px;
+  display: block;
+  margin: auto;
 }
 
 
@@ -93,4 +66,29 @@
 .heart-icon {
   text-align: right;
 
+}
+
+label {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-container {
+  margin: auto;
+  display: inline-block;
+}
+
+.form-container > input {
+  padding-right: 10px;
+}
+
+.form-button {
+  padding: 10px;
+  margin: 10px;
 }

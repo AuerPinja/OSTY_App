@@ -7,12 +7,18 @@ function tyonhakijaApp() {
   return (
     <>
       <div className="main-container">
-        <h2>Olen...</h2>
-        <div className="main-button-container"><button>Työnantaja</button></div>
-        <div className="main-button-container"><button>Työnhakija</button></div>
+        <h1>Mitkä näistä kiinnostaisivat sinua?</h1>
+        <form>
+          <input type="checkbox">Ohjelmointi</input>
+          <input type="checkbox">Vuorovaikutus</input>
+          <input type="checkbox">Tiimityöskentely</input>
+          <input type="checkbox">Luovuus</input>
+          <input type="checkbox">Sertifikaatit</input>
+          <button>Jatka</button>
+        </form>
       </div>
     </>
   )
 }
 
-export default App
+export default tyonhakijaApp;
