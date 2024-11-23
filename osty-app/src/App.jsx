@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import TyonhakijaForm from './TyonhakijaForm'; 
+import TyonhakijaForm from './TyonhakijaLomake'; 
 
 function App() {
   const [showTyonhakija, setShowTyonhakija] = useState(false); 

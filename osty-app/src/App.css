@@ -22,6 +22,7 @@
 
 /* Styling for the card container */
 .card-container {
+  margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -35,7 +36,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 16px;
-  width: 200px; /* Adjust width as needed */
+  width: 250px; /* Adjust width as needed */
   text-align: left;
 }
 
@@ -64,8 +65,12 @@
 }
 
 .heart-icon {
-  text-align: right;
+  cursor: pointer;
+  display: inline-block;
+}
 
+.heart-icon.clicked a {
+  color: red;
 }
 
 label {
@@ -91,4 +96,13 @@ form {
 .form-button {
   padding: 10px;
   margin: 10px;
+}
+
+.match-percentage {
+  display: block;
+  text-align: center; 
+  margin: 0 auto; 
+  font-weight: bold; 
+  font-size: 1.6rem; 
+  padding: 20px;
 }
