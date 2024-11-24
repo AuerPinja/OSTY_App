@@ -2,34 +2,6 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
 .card {
   padding: 2em;
 }
@@ -42,6 +14,114 @@
   padding-bottom: 20px;
 }
 
+.main-button-container-tyonantaja {
+  padding-bottom: 20px;
+  margin-top: 50px;
+}
+
 .main-container {
-  padding-top: 50px;
+  display: block;
+  margin: auto;
+}
+
+
+/* Styling for the card container */
+.card-container {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  color: black;
+}
+
+/* Individual card styling */
+.card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  width: 300px; /* Adjust width as needed */
+  text-align: left;
+}
+
+/* Card content styling */
+.card-content p {
+  margin: 8px 0;
+}
+
+.card-content p strong {
+  font-weight: bold;
+}
+
+.fake-image {
+  background-color: #d0d0d0;
+  height: 50px;
+}
+
+.array-item {
+  display: inline-block;
+  background-color: #f0f0f0;
+  padding: 4px 8px;
+  margin: 4px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+}
+
+.heart-icon {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.heart-icon.clicked a {
+  color: red;
+}
+
+label {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-container {
+  margin: auto;
+  display: inline-block;
+}
+
+.form-container > input {
+  padding-right: 10px;
+}
+
+.form-button {
+  padding: 10px;
+  margin: 10px;
+}
+
+.takaisin-etusivulle {
+  margin: auto;
+  padding: 10px;
+  max-width: 250px;
+  margin-top: 50px;
+}
+
+.match-percentage {
+  display: block;
+  text-align: center; 
+  margin: 0 auto; 
+  font-weight: bold; 
+  font-size: 1.6rem; 
+  padding: 20px;
+}
+
+.tyonantaja-input {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
