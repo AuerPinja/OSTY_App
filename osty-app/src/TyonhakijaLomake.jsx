@@ -3,7 +3,7 @@ import { fetchData } from './fetchedData';
 import Results from './fetchedData';
 import './App.css';
 
-function TyonhakijaForm() {
+function TyonhakijaForm({resetForm}) {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedKeywords, setSelectedKeywords] = useState([]);
   const [results, setResults] = useState(null);
@@ -17,24 +17,23 @@ function TyonhakijaForm() {
     setSelectedKeywords(prev =>
       checked ? [...prev, normalizedValue] : prev.filter(item => item !== normalizedValue)
     );
-    console.log([selectedKeywords]); // Debugging log
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const data = await fetchData(selectedKeywords); // Pass selected keywords
-      console.log("Fetched data:", data);
       setResults(data); 
       setCurrentStep(6); // Move to results step
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Tapahtui virhe:", error);
     }
   };
 
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit}>
+      <button className="takaisin-etusivulle" type="button" onClick={resetForm}>Takaisin etusivulle</button>
         {currentStep === 1 && (
           <div>
             <h2>Mitkä näistä kiinnostavat sinua?</h2>
@@ -112,6 +111,7 @@ function TyonhakijaForm() {
 
         {currentStep === 6 && results && (
           <div>
+            
             <Results data={results} />
           </div>
         )}

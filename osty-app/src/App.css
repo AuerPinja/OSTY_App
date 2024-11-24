@@ -14,6 +14,11 @@
   padding-bottom: 20px;
 }
 
+.main-button-container-tyonantaja {
+  padding-bottom: 20px;
+  margin-top: 50px;
+}
+
 .main-container {
   display: block;
   margin: auto;
@@ -36,7 +41,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 16px;
-  width: 250px; /* Adjust width as needed */
+  width: 300px; /* Adjust width as needed */
   text-align: left;
 }
 
@@ -98,6 +103,13 @@ form {
   margin: 10px;
 }
 
+.takaisin-etusivulle {
+  margin: auto;
+  padding: 10px;
+  max-width: 250px;
+  margin-top: 50px;
+}
+
 .match-percentage {
   display: block;
   text-align: center; 
@@ -105,4 +117,11 @@ form {
   font-weight: bold; 
   font-size: 1.6rem; 
   padding: 20px;
+}
+
+.tyonantaja-input {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
