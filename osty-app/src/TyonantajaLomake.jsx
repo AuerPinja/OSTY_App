@@ -4,24 +4,36 @@ import { collection, addDoc } from "firebase/firestore";
 import "./App.css";
 
 function TyonantajaForm({ resetForm }) {
+  /*Kertoo missä kohtaa lomaketta ollaan menossa*/
   const [currentStep, setCurrentStep] = useState(1);
+  
   const [nimi, setNimi] = useState("");
   const [toimiala, setToimiala] = useState("");
+
+  /*Tänne tallennetaan kaikki käyttäjän valinnat string-muodossa*/
   const [selectedKeywords, setSelectedKeywords] = useState([]);
+
+  /*Kertoo käyttäjälle, että tietoja tallennetaan*/
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  /*Tarkistaa onko checkboc aktiivinen ja lisää sen arvon listaan*/
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
+    /*poistetaan isot alkukirjaimet*/
     const normalizedValue = value.toLowerCase();
+    /*Joka kerta, kun käyttäjä laittaa checkboxin aktiiviseksi, se lisätään selectedKeywords listaan, ja kun käyttäjä ottaa ruksin pois, sen arvo poistetaan listasta*/
     setSelectedKeywords((prev) =>
       checked ? [...prev, normalizedValue] : prev.filter((item) => item !== normalizedValue)
     );
   };
 
+  /*Määrittää mitä tapahtuu, kun painetaan Tallenna*/
   const handleSubmit = async (e) => {
+    /*Estetään oletustapahtuma*/
     e.preventDefault();
+    /*Kerrotaan käyttäjälle, että datansiirto aloitetaan, vaihtaa Tallenna-näppäimen tekstin muotoon Tallennetaan...*/
     setIsSubmitting(true);
-
+    /* valmistellaan tietokantaan kirjoitettava data*/
     try {
       const newData = {
         nimi,
@@ -29,16 +41,24 @@ function TyonantajaForm({ resetForm }) {
         avainsanat: selectedKeywords,
       };
 
+      /*Otetaan yhteys tietokantaan ja koitetaan kirjoittaa data tietokantaan*/
       await addDoc(collection(db, "Tyonantajat"), newData);
+      /*Näyttää käyttäjälle ilmoituksen, että datansiirto onnistui*/
       alert("Työpaikkailmoitus tallennettu onnistuneesti!");
-      resetForm(); // Return to home after submission
+      /*Palautetaan kotinäkymä*/
+      resetForm();
+
+      /*Virhetilanteita varten*/
     } catch (error) {
       console.error("Error adding document: ", error);
       alert("Virhe tallennettaessa ilmoitusta.");
     } finally {
+      /*Datansiirtotila otetaan pois päältä, kun data on siirretty*/
       setIsSubmitting(false);
     }
   };
+
+  /*Työpaikkailmoituslomake*/
 
   return (
     <div className="form-container">
@@ -48,13 +68,17 @@ function TyonantajaForm({ resetForm }) {
           <div>
             <h2>Työpaikan tiedot</h2>
             <div>
+              /*Laitetaan käyttäjän syöte Nimi-muuttujaan*/
               <label>Nimi:</label>
               <input className="tyonantaja-input" type="text" value={nimi} onChange={(e) => setNimi(e.target.value)} placeholder="Yrityksen nimi" required/>
             </div>
             <div>
+              /*Laitetaan käyttäjän syöte Toimiala-muuttujaan*/
               <label>Toimiala:</label>
               <input className="tyonantaja-input" type="text" value={toimiala} onChange={(e) => setToimiala(e.target.value)} placeholder="Toimiala" required/>
             </div>
+
+            /*Asetetaan seuraava vaihe, kun Seuraava-painiketta painetaan*/
             <button className="form-button" type="button" onClick={() => setCurrentStep(2)}>
               Jatka
             </button>
@@ -151,7 +175,7 @@ function TyonantajaForm({ resetForm }) {
 
         {currentStep === 6 && (
           <div>
-            <h2>Mitä yheiskunnallisia arvoja yritykselläsi on?</h2>
+            <h2>Mitä yhteiskunnallisia arvoja yritykselläsi on?</h2>
             <label><input type="checkbox" value="Vastuulliset hankintaketjut" onChange={handleCheckboxChange} /> Vastuulliset hankintaketjut</label>
             <label><input type="checkbox" value="Avoin päätöksenteko" onChange={handleCheckboxChange} /> Avoin päätöksenteko</label>
             <label><input type="checkbox" value="Eettisyysraportointi" onChange={handleCheckboxChange} /> Eettisyysraportointi</label>
@@ -162,6 +186,8 @@ function TyonantajaForm({ resetForm }) {
             <button className="form-button" type="button" onClick={() => setCurrentStep(5)}>
                 Edellinen
               </button>
+              
+              /* Tallenna-näppäin tarkistaa onko isSubmitting true vai false, ja kun se on true (mikä vaihtuu kun handeSubmit menee päälle), painike menee pois käytöstä ja vaihtaa tekstiksi Tallennetaan*/
               <button className="form-button" type="submit" disabled={isSubmitting}>
                 {isSubmitting ? "Tallennetaan..." : "Tallenna"}
               </button>
