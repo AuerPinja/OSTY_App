@@ -4,31 +4,52 @@ import Results from './fetchedData';
 import './App.css';
 
 function TyonhakijaForm({resetForm}) {
+
+  /*Kertoo missä vaiheessa lomaketta mennään*/
   const [currentStep, setCurrentStep] = useState(1);
+
+  /*Tänne tallennetaan käyttäjän lomakevalinnat*/
   const [selectedKeywords, setSelectedKeywords] = useState([]);
+
+  /*Tänne asetetaan tietokannasta haettu ja suodatettu data*/
   const [results, setResults] = useState(null);
 
+  
+/*Näiden muuttujien avulla käyttäjä ohjaa lomakkeen kulkua*/
   const nextStep = () => setCurrentStep(prevStep => prevStep + 1);
   const prevStep = () => setCurrentStep(prevStep => prevStep - 1);
 
+  /*Hallitsee valintaruutujen toimintaa*/
   const handleCheckboxChange = (e) => {
+    /*Laitetaan valittu valintaruutu omaan muuttujaansa*/
     const { value, checked } = e.target;
-    const normalizedValue = value.toLowerCase(); // Normalize to lowercase
+    /*muuntaa valintaruudun arvon kirjaimet pieniksi*/
+    const normalizedValue = value.toLowerCase(); 
+    /*Tarkistetaan onko valintaruudun arvoa jo olemassa listassa. jos ei ole, se lisätään listaan, ja jos on, niin se poistetaan listasta*/
     setSelectedKeywords(prev =>
       checked ? [...prev, normalizedValue] : prev.filter(item => item !== normalizedValue)
     );
   };
 
+  
+  /*Näytä tulokset- painikkeen hallinta*/
   const handleSubmit = async (e) => {
+    /*Estetään oletustapahtuma*/
     e.preventDefault();
+    /*Viedään selectedKeywords-lista fetchedData-luokkaan, ja samalla haetaan tietokanta sieltä*/
     try {
-      const data = await fetchData(selectedKeywords); // Pass selected keywords
+      const data = await fetchData(selectedKeywords);
+      /*Laitetaan haettu data results-muuttujaan*/
       setResults(data); 
-      setCurrentStep(6); // Move to results step
+      /*Laitetaan tulokset näkymään omana näkymänään*/
+      setCurrentStep(6); 
+      /*Virheentarkistus*/
     } catch (error) {
       console.error("Tapahtui virhe:", error);
     }
   };
+
+  /*Työnhakulomale*/
 
   return (
     <div className="form-container">
