@@ -3,16 +3,25 @@ import { getDocs, collection } from "firebase/firestore";
 import './App.css';
 import React, { useState } from 'react';
 
+/*Tuodaan selectedKeywords-muuttuja TyönhakijaLomakkeesta*/
 export const fetchData = async (selectedKeywords = []) => {
+  /*Asetetaan haettu data muuttujaan*/
   const querySnapshot = await getDocs(collection(db, "Tyonantajat"));
+  
+  /*Asetetaan data ja prosenttilaskennan tulos muuttujaan*/
   const matchResults = [];
 
+  /*Käydään jokainen dokumentti läpi*/
   querySnapshot.docs.forEach(doc => {
     const data = doc.data();
+    /*muunnetaan kaikki avainsana-listan osien kirjaimet pieneksi*/
     const avainsana = (data.avainsanat || []).map(keyword => keyword.toLowerCase());
+    /*verrataan avainsana- ja selectedKeywords-listoja keskenään, ja tarkistetaan kuinka monta yhteistä osumaa listoista löytyy*/
     const matches = avainsana.filter(keyword => selectedKeywords.includes(keyword));
+    /*Tehdään laskutoimitus, jossa lasketaan matches- ja selectedKeywords-listojen pituudet, ja jaetaan match-lista selectedKeywords-listojen pituudella prosenttimäärän laskemiseksi*/
     const matchPercentage = selectedKeywords.length > 0 ? Math.floor((matches.length / selectedKeywords.length) * 100) : 0;
 
+    /*pusketaan haettu data ja prosenttimäärä aiemmin määriteltyyn listamuuttujaan*/
     matchResults.push({
       id: doc.id,
       ...data,
@@ -21,17 +30,21 @@ export const fetchData = async (selectedKeywords = []) => {
   });
 
 
+  /*Otetaan listasta pois kaikki osumat, joiden prosenttimääräksi tuli nolla*/
   const filteredResults = matchResults.filter(item => item.matchPercentage > 0);
 
-
+  /*Järjestetään lista isoimmasta prosenttimäärästä pienimpään*/
   filteredResults.sort((a, b) => b.matchPercentage - a.matchPercentage);
 
   return filteredResults;
 };
 
+/*Näytetään tulokset käyttäjälle*/
 function Results({ data }) {
+  /*Tykkäysnapin käyttöä varten*/
   const [clickedHearts, setClickedHearts] = useState({}); // Tracks which hearts are clicked
 
+  /*Kun tykkäysnappia klikataan, kysytään käyttäjältä ilmoituksen lähettämisestä, ja kun käyttäjä painaa OK, sydän muuttuu punaiseksi*/
   const handleHeartClick = (id) => {
     const isConfirmed = window.confirm("Haluatko lähettää hakemuksen tähän yritykseen?");
     if (isConfirmed) {
@@ -41,6 +54,8 @@ function Results({ data }) {
       }));
     }
   };
+
+  /*Tulosten asettelu*/
 
   return (
     <div className="card-container">
