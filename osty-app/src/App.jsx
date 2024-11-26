@@ -4,23 +4,32 @@ import TyonhakijaForm from "./TyonhakijaLomake";
 import TyonantajaForm from "./TyonantajaLomake";
 
 function App() {
+  /* Muuttuja, jonka avulla voidaan vaihtaa näkymiä */
   const [currentView, setCurrentView] = useState("home");
 
+  /* Vaihtaa näkymän työnhakijaan*/
   const handleTyonhakijaClick = () => {
     setCurrentView("tyonhakija");
   };
 
+  
+/*Vaihtaa näkymän työnantajaan*/
   const handleTyonantajaClick = () => {
     setCurrentView("tyonantaja");
   };
+
+  /* Kirjoittaa työpaikkailmoituksen tietokantaan*/
 
   const handlePostJobClick = () => {
     setCurrentView("postJob");
   };
 
+  /*Vaihtaa näkymän takaisin kotiin*/
   const goBackToHome = () => {
     setCurrentView("home");
   };
+
+  /*Pääohjelma*/
 
   return (
     <div className="main-container">
