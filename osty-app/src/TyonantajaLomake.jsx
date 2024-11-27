@@ -68,17 +68,14 @@ function TyonantajaForm({ resetForm }) {
           <div>
             <h2>Työpaikan tiedot</h2>
             <div>
-              /*Laitetaan käyttäjän syöte Nimi-muuttujaan*/
               <label>Nimi:</label>
               <input className="tyonantaja-input" type="text" value={nimi} onChange={(e) => setNimi(e.target.value)} placeholder="Yrityksen nimi" required/>
             </div>
             <div>
-              /*Laitetaan käyttäjän syöte Toimiala-muuttujaan*/
               <label>Toimiala:</label>
               <input className="tyonantaja-input" type="text" value={toimiala} onChange={(e) => setToimiala(e.target.value)} placeholder="Toimiala" required/>
             </div>
 
-            /*Asetetaan seuraava vaihe, kun Seuraava-painiketta painetaan*/
             <button className="form-button" type="button" onClick={() => setCurrentStep(2)}>
               Jatka
             </button>
@@ -186,8 +183,6 @@ function TyonantajaForm({ resetForm }) {
             <button className="form-button" type="button" onClick={() => setCurrentStep(5)}>
                 Edellinen
               </button>
-              
-              /* Tallenna-näppäin tarkistaa onko isSubmitting true vai false, ja kun se on true (mikä vaihtuu kun handeSubmit menee päälle), painike menee pois käytöstä ja vaihtaa tekstiksi Tallennetaan*/
               <button className="form-button" type="submit" disabled={isSubmitting}>
                 {isSubmitting ? "Tallennetaan..." : "Tallenna"}
               </button>
